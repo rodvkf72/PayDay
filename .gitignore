@@ -1,4 +1,6 @@
 /target/
+target/
+*/target/**
 *.properties
 # Created by stableyoung
 
@@ -13,6 +15,14 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+
+# Package Files #
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
 # Package Files #
 
