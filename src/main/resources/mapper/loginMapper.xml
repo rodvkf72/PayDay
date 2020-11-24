@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapper namespace="com.deu.payday.dao.LoginMapper">
+
+    <select id="loginData" resultType="com.deu.payday.domain.LoginVO">
+    	<![CDATA[
+    	SELECT IF(STRCMP(pw, respw), 0, 1) FROM info WHERE id=resid
+        SELECT * FROM user_info
+        ]]>
+    </select>
+
+</mapper>
