@@ -44,7 +44,7 @@ public class LoginController {
 		lvo.setPw(respw);
 		String result = loginMapper.login(lvo);
 		
-		//NPE Ã³¸®
+		//NPE
 		if (result == null) {
 			return "fail";
 		} else {
