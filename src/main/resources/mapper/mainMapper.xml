@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.deu.payday.dao.LoginMapper">
+<mapper namespace="com.deu.payday.dao.MainMapper">
 
-    <select id="login" resultType="string">
+    <select id="goodsData" resultType="com.deu.payday.util.PubMap">
     	<![CDATA[
-    	SELECT DECODE(user_pw, #{pw}, '1', '0') FROM user_info WHERE user_id=#{id}
+    	SELECT * FROM goods
         ]]>
     </select>
 
