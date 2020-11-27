@@ -5,6 +5,5 @@ import java.util.List;
 import com.deu.payday.domain.LoginVO;
 
 public interface LoginMapper {
-	List<LoginVO> loginData();
-	
+	String login(LoginVO lvo);
 }
