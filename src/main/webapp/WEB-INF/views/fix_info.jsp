@@ -12,7 +12,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		
 		<!-- link 선언 --> 
-		<link rel="stylesheet" type="text/css" href="${path}/resources/dist/css/style_login.css"> 
+		<link rel="stylesheet" type="text/css" href="${path}/resources/dist/css/style_login.css">
+		<link rel="stylesheet" type="text/css" href="${path}/resources/dist/css/style.css">
 		 
 		<title>
 		PayDay Fix Info
@@ -127,7 +128,7 @@
     
    
    <input type="submit" value="저장"/>
-   <button type="button" value="취소" onclick="location.href='index'">취소</button>
+   <button type="button" value="취소" onclick="history.back()">취소</button>
    </form>
    </div>
    </c:forEach>

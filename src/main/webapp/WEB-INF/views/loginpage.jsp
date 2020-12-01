@@ -10,6 +10,7 @@
 	
 	    <!-- link 선언 --> 
 	    <link rel="stylesheet" type="text/css" href="${path}/resources/dist/css/style_login.css"> 
+	    <link rel="stylesheet" type="text/css" href="${path}/resources/dist/css/style.css">
 	    
 		<title>
 	    PayDay Login

@@ -2,12 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.deu.payday.dao.UserinfoMapper">
-    <select id="insert" resultType="com.deu.payday.util.PubMap">
-    	<![CDATA[
-    	INSERT INTO user_info(user_name, user_id, user_pw, user_ip, user_addr, user_job, user_relay, user_means) VALUES (#{name}, #{id}, #{pw}, #{ip}, #{addr}, #{job}, #{relay}, #{means})
-    	]]>
-    </select>
-    
+
     <select id="getList" resultType="com.deu.payday.util.PubMap">
     	<![CDATA[
     	SELECT * FROM user_info where user_id=#{id}

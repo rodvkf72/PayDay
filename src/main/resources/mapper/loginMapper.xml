@@ -8,5 +8,9 @@
     	SELECT DECODE(user_pw, #{pw}, '1', '0') FROM user_info WHERE user_id=#{id}
         ]]>
     </select>
-
+	<select id="goodslist" resultType="com.deu.payday.util.PubMap">
+		<![CDATA[
+		SELECT goods_no, goods_name, goods_price FROM goods
+		]]>
+	</select>
 </mapper>

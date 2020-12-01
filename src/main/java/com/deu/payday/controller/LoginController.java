@@ -1,5 +1,6 @@
 package com.deu.payday.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -11,13 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.deu.payday.dao.GoodsMapper;
 import com.deu.payday.dao.LoginMapper;
 import com.deu.payday.dao.UserinfoMapper;
+import com.deu.payday.domain.GoodsVO;
 import com.deu.payday.domain.LoginVO;
 import com.deu.payday.domain.UpdateVO;
+import com.deu.payday.util.PubMap;
 
+import jdk.internal.org.jline.utils.Log;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Controller
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -31,13 +38,20 @@ public class LoginController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {
 		logger.info("Welcome Index!", locale);
+		//PubMap p = loginMapper.goodslist();
 		
+		model.addAttribute("list", loginMapper.goodslist());
+		/*
+		model.addAttribute("goodsNo", p.getInt("goodsNo"));
+		model.addAttribute("goodsName", p.getString("goodsName"));
+		model.addAttribute("goodsPrice", p.getInt("goodsPrice"));
+		*/
 		return "index";
 	}
 	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("user_id") String resid, @RequestParam("user_pw") String respw) {
+	public String login(Locale locale, Model model, @RequestParam("user_id") String resid, @RequestParam("user_pw") String respw) {
 		
 		logger.info("Welcome Login!");
 		
@@ -51,6 +65,7 @@ public class LoginController {
 			return "fail";
 		} else {
 			if (result.equals("1")) {
+				model.addAttribute("list", loginMapper.goodslist());
 				return "index";
 			} else {
 				return "fail";

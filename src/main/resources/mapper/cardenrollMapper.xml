@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.deu.payday.dao.CardenrollMapper">
+
+    <insert id="enroll">
+    	INSERT INTO card_info(user_id, card_no, card_duration, card_cvc, card_pw, card_money) VALUES (#{userid}, #{cardno}, #{cardduration}, #{cardcvc}, #{cardpw}, #{cardmoney})					
+    </insert>
+ </mapper>

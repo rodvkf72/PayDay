@@ -4,7 +4,7 @@
 <mapper namespace="com.deu.payday.dao.TestMapper">
 
     <select id="selectTestData" resultType="com.deu.payday.util.PubMap">
-        select * from emp
+        select * from user_info
     </select>
 
 </mapper>
