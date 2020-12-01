@@ -1,7 +1,5 @@
 package com.deu.payday.controller;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +35,7 @@ public class GoodsControllerTests {
 		GoodsVO gvo = new GoodsVO();
 		gvo.setGno(1);
 		
-		List<PubMap> test = goodsMapper.goods(gvo);
+		PubMap test = goodsMapper.goods(gvo);
 		log.info("test : " + test);
 	}
 }
