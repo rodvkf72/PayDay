@@ -15,20 +15,21 @@
 <div style="width:50px; height:300px;display: inline; float:left;">
 </div>
 	<!--물품설명 및 수량,가격 div-->
-	<form name="form" method="get">
+	<form name="form" action="payment" method="post">
 		<div style="width:200px; height:200px; display:inline-block;">
 		   <p style= "font-size:18pt;font-family:'Malgun Gothic'">물품이름 : ${goodsName}</a>
 		
  	       <p style= "font-size:1.5em;font-family:'Malgun Gothic'">가격 : ${goodsPrice}</p>
 		
     	    <label style= "font-size:18pt;font-family:'Malgun Gothic'">수량 : </label>
+    	    	<input name="goods_no" value="${ goodsNo }" hidden>
         		<input style = "border-radius: 2px;"type=hidden name="sell_price"  value="${goodsPrice}">
 				<input style = "border: 1px solid #D1D0CE; background-color:#D1D0CE;border-radius: 2px;"type="button" value=" - " onclick="del();"> 
             	<input style = "border-radius: 2px;"type="text" name="amount" value="1" size="3" onchange="change();">
             	<input style = "border: 1px solid #D1D0CE; background-color:#D1D0CE;border-radius: 2px;"type="button" value=" + " onclick="add();"> <br>            
 			<label style= "font-size:18pt;font-family:'Malgun Gothic'">금액 : </label><input style = "border-radius: 2px;" type="text" name="sum" size="11" readonly>원
             <p></p>
-			<button type="button" onClick="location.href='###'" style = "font-family:'Malgun Gothic';border-radius: 5px; font-size:18px; border: 1px solid #1589FF; background-color:#1589FF; color:white; ">구매하기</button>
+			<input type="submit" style = "font-family:'Malgun Gothic';border-radius: 5px; font-size:18px; border: 1px solid #1589FF; background-color:#1589FF; color:white; " value="구매하기">
 		</div>
 	</form>
 </div>

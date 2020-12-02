@@ -1,6 +1,5 @@
 package com.deu.payday.controller;
 
-import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,15 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.deu.payday.dao.GoodsMapper;
 import com.deu.payday.dao.LoginMapper;
+import com.deu.payday.dao.PayMapper;
 import com.deu.payday.dao.UserinfoMapper;
-import com.deu.payday.domain.GoodsVO;
 import com.deu.payday.domain.LoginVO;
+import com.deu.payday.domain.PayVO;
 import com.deu.payday.domain.UpdateVO;
 import com.deu.payday.util.PubMap;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -32,6 +30,9 @@ public class LoginController {
 	@Autowired
 	@Setter(onMethod_ = @Autowired)
 	private LoginMapper loginMapper;
+	@Autowired
+	@Setter(onMethod_ = @Autowired)
+	private PayMapper payMapper;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -66,6 +67,11 @@ public class LoginController {
 		} else {
 			if (result.equals("1")) {
 				model.addAttribute("list", loginMapper.goodslist());
+				
+				PayVO pvo = new PayVO();
+				pvo.setUser_id(resid);
+				PubMap m = payMapper.pay(pvo);
+				model.addAttribute("cardMoney", m.getInt("cardMoney") );
 				return "index";
 			} else {
 				return "fail";

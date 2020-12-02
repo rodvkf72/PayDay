@@ -19,7 +19,7 @@ public class PayController {
 	@RequestMapping(value = "/pay", method = RequestMethod.POST)
 	public String pay () {
 		PayVO pvo = new PayVO();
-		pvo.setUser_id(1234);
+		pvo.setUser_id("1234");
 		
 		paymapper.pay(pvo);
 		

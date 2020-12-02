@@ -31,7 +31,7 @@ public class PayControllerTests {
 	@Test
 	public void testpay() {
 		PayVO pvo = new PayVO();
-		pvo.setUser_id(1234);
+		pvo.setUser_id("1234");
 		paymapper.pay(pvo);
 	
 		PubMap test = paymapper.pay(pvo);

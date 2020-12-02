@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class PayVO {
-	private int user_id;
+	private String user_id;
 }

@@ -51,7 +51,7 @@
 		%>
 		기본 페이지 입니다.
 		<br>
-		사용자 : 회원
+		사용자 : 회원 &emsp; ${ cardMoney }
 		<form action='fix_info' method="post">
 			<input name="user_id" type="text" value=<%=id%> hidden>
 			<input type="submit" value="정보수정" class="signUpButton" style="width: 100px">
@@ -91,7 +91,7 @@
 
 <div class="goods_price"><span><span><c:out value="${ item.goodsPrice }"></c:out>원</span></span></div>
 
-<button type="button" class="navyBtn" onClick="location.href='goods_no=<c:out value="${ item.goodsNo }"></c:out>'">구매하기</button>	
+<button type="button" class="navyBtn" onClick="location.href='goods?goods_no=<c:out value="${ item.goodsNo }"></c:out>'">구매하기</button>	
 	</div>
 	</div>
 	</c:forEach>

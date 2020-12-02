@@ -5,7 +5,7 @@
 
 <select id="goods" resultType="com.deu.payday.util.PubMap">
 	<![CDATA[
-    SELECT goods_name, goods_price FROM goods WHERE goods_no = #{gno}
+    SELECT goods_no, goods_name, goods_price FROM goods WHERE goods_no = #{gno}
     ]]>
 </select>
 

@@ -31,6 +31,7 @@ public class GoodsController {
 	
 		PubMap m = goodsMapper.goods(gd);
 		
+		model.addAttribute("goodsNo", m.getInt("goodsNo"));
 		model.addAttribute("goodsName", m.getString("goodsName") );
 		model.addAttribute("goodsPrice", m.getInt("goodsPrice") );
 		
