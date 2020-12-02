@@ -52,13 +52,14 @@
        
    <tr ><!-- 결제버튼 -->
            <td align="center" width = 150 height = 50 colspan="2">
-           	<form action="final" method="post">
-           		<input id="price" value="${goodsPrice }" hidden>
-           		<input id="amount" value="${goodsAmount }" hidden>
-           		<input id="tex" value="3000" hidden>
-           		<input id="result" value="" hidden>
+           	<form action="cardsimple" method="post">
+           		<input name="user_id" value="${userId }" hidden>
+           		<input name="price" id="price" value="${goodsPrice }" hidden>
+           		<input name="amount" id="amount" value="${goodsAmount }" hidden>
+           		<input name="tex" id="tex" value="3000" hidden>
+           		<input name="result" id="result" value="" hidden>
            		
-               <input type="submit" onClick="location.href='###'" 
+               <input type="submit" 
                style = "font-family:'Malgun Gothic';border-radius: 5px; font-size:18px; border: 1px solid
                 #1589FF; background-color:#1589FF; color:white; " value="결제하기">
             </form>

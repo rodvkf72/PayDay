@@ -23,14 +23,15 @@ public class GoodsController {
 	@Setter(onMethod_ = @Autowired)
 	private GoodsMapper goodsMapper;
 	
-	@RequestMapping(value = "/goods", method = RequestMethod.GET)
-	public String goods(@RequestParam("goods_no") int resno, Model model) {
+	@RequestMapping(value = "/goods", method = RequestMethod.POST)
+	public String goods(@RequestParam("user_id") String resid, @RequestParam("goods_no") int resno, Model model) {
 	
 		GoodsVO gd = new GoodsVO();
 		gd.setGno(resno);
 	
 		PubMap m = goodsMapper.goods(gd);
 		
+		model.addAttribute("userId", resid);
 		model.addAttribute("goodsNo", m.getInt("goodsNo"));
 		model.addAttribute("goodsName", m.getString("goodsName") );
 		model.addAttribute("goodsPrice", m.getInt("goodsPrice") );

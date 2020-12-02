@@ -90,8 +90,12 @@
 <a class="item_name" href="http://item.gmarket.co.kr/Item?goodscode=1171404569&amp;ver=637419214621165498" onclick="pdsClickLog('200000680', 'Item', {'ASN': 1, 'goodsCode': '1171404569'});"><c:out value="${ item.goodsName }"></c:out></a>
 
 <div class="goods_price"><span><span><c:out value="${ item.goodsPrice }"></c:out>원</span></span></div>
-
-<button type="button" class="navyBtn" onClick="location.href='goods?goods_no=<c:out value="${ item.goodsNo }"></c:out>'">구매하기</button>	
+<form action="goods" method="post">
+<input name="user_id" value=<%=id %> hidden>
+<input name="goods_no" value="${ item.goodsNo }" hidden>
+<input type="submit" class="navyBtn" value="구매하기">
+</form>
+<!-- <button type="button" class="navyBtn" onClick="location.href='goods?goods_no=<c:out value="${ item.goodsNo }"></c:out>'">구매하기</button> -->
 	</div>
 	</div>
 	</c:forEach>

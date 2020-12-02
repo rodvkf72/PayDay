@@ -35,13 +35,14 @@ public class PaymentController {
 	private PaymentMapper paymentMapper;
 	
 	@RequestMapping(value = "/payment", method = RequestMethod.POST)
-	public String goods(@RequestParam("goods_no") int resno, @RequestParam("amount") int resamount, @RequestParam("sum") int ressum, Locale locale, Model model) {
+	public String goods(@RequestParam("user_id") String resid, @RequestParam("goods_no") int resno, @RequestParam("amount") int resamount, @RequestParam("sum") int ressum, Locale locale, Model model) {
 	
 		PaymentVO pd = new PaymentVO();
 		pd.setGno(resno);
 	
 		PubMap m = paymentMapper.payment(pd);
 		
+		model.addAttribute("userId", resid);
 		model.addAttribute("goodsAmount", resamount);
 		model.addAttribute("goodsSum", ressum);
 		model.addAttribute("goodsName", m.getString("goodsName") );

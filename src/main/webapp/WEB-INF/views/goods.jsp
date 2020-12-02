@@ -22,6 +22,7 @@
  	       <p style= "font-size:1.5em;font-family:'Malgun Gothic'">가격 : ${goodsPrice}</p>
 		
     	    <label style= "font-size:18pt;font-family:'Malgun Gothic'">수량 : </label>
+    	    	<input name="user_id" value="${ userId }" hidden>
     	    	<input name="goods_no" value="${ goodsNo }" hidden>
         		<input style = "border-radius: 2px;"type=hidden name="sell_price"  value="${goodsPrice}">
 				<input style = "border: 1px solid #D1D0CE; background-color:#D1D0CE;border-radius: 2px;"type="button" value=" - " onclick="del();"> 
