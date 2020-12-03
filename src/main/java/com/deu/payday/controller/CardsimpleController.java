@@ -40,7 +40,7 @@ public class CardsimpleController {
 	@RequestMapping(value = "/simplepw", method = RequestMethod.POST)
 	public String simplepw(Locale locale, Model model, @RequestParam("user_id") String resid, @RequestParam("simple_pw") String resspw, @RequestParam("result") int resresult) {
 		
-		logger.info("결제완료");
+		logger.info("Welcome payment page");
 		
 		CardsimpleVO cvo = new CardsimpleVO();
 		cvo.setId(resid);
