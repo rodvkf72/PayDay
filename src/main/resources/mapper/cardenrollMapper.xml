@@ -10,4 +10,8 @@
     <delete id="del">
  		DELETE FROM simple WHERE simple_no = (SELECT card_no FROM card_info WHERE user_id = #{user_id})
 	</delete>
+	
+	<insert id="simple">
+		INSERT INTO simple(simple_no, simple_mean, simple_pw) values ((SELECT card_no FROM card_info WHERE user_id = #{user_id}), #{simple_mean}, #{simple_pw})
+	</insert>
  </mapper>

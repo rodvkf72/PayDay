@@ -68,7 +68,7 @@
        	<form action = "simplepw" method = "post">
 		    <div class="modal_content">
 		        <input name="user_id" value="${userId }" hidden>
-           		<input name="simple_pw" value=""> <!-- 테스트용 -->
+           		<input type="password" name="simple_pw" value=""> <!-- 테스트용 -->
            		<input name="price" id="price" value="${goodsPrice }" hidden>
            		<input name="amount" id="amount" value="${goodsAmount }" hidden>
            		<input name="tex" id="tex" value="3000" hidden>

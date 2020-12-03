@@ -60,6 +60,10 @@
 									<input type="hidden" name="user_id" type="text" value=<%=id%>>
 									<input type="submit" value="카드등록" class="signUpButton" style="width: 200px">
 								</form> &emsp;
+								<form action='card_simple_page' method="post" style="display: inline;">
+									<input type="hidden" name="user_id" type="text" value=<%=id%>>
+									<input type="submit" value="결제등록" class="signUpButton" style="width: 200px">
+								</form> &emsp;
 								<form action='card_del' method="post" style="display: inline;">
 									<input type="hidden" name="user_id" type="text" value=<%=id%>>
 									<input type="submit" value="등록해제" class="signUpButton" style="width: 200px">

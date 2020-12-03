@@ -16,6 +16,7 @@ import com.deu.payday.dao.LoginMapper;
 import com.deu.payday.dao.PayMapper;
 import com.deu.payday.domain.CardenrollVO;
 import com.deu.payday.domain.PayVO;
+import com.deu.payday.domain.SimpleVO;
 import com.deu.payday.util.PubMap;
 
 import lombok.Setter;
@@ -79,6 +80,34 @@ public class CardController {
 		model.addAttribute("cardMoney", m.getInt("cardMoney") );
 		model.addAttribute("list", loginMapper.goodslist());
 
+		return "index";
+	}
+	
+	@RequestMapping(value = "/card_simple_page", method = RequestMethod.POST)
+	public String card_del_page(Locale locale, Model model, @RequestParam("user_id") String resid) {
+		logger.info("Welcome card simple enroll page");
+		
+		return "sepage";
+	}
+	
+	@RequestMapping(value = "/card_simple", method = RequestMethod.POST)
+	public String card_simple(Locale locale, Model model, @RequestParam("user_id") String resid, @RequestParam("simple_mean") String resmean, @RequestParam("simple_pw") int respw) {
+		logger.info("Welcome card simple enroll");
+		
+		SimpleVO svo = new SimpleVO();
+		svo.setUser_id(resid);
+		svo.setSimple_mean(resmean);
+		svo.setSimple_pw(respw);
+		
+		cardenrollMapper.simple(svo);
+		
+		PayVO pvo = new PayVO();
+		pvo.setUser_id(resid);
+		PubMap m = payMapper.pay(pvo);
+		
+		model.addAttribute("cardMoney", m.getInt("cardMoney"));
+		model.addAttribute("list", loginMapper.goodslist());
+		
 		return "index";
 	}
 }
