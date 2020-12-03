@@ -8,5 +8,11 @@
     	SELECT card_money FROM card_info WHERE user_id = #{user_id}
         ]]>
     </select>
+ 	
+ 	<update id="buy">
+ 		<![CDATA[
+ 		UPDATE card_info SET card_money = card_money - #{result} WHERE user_id = #{user_id}
+ 		]]>
+ 	</update>
 
 </mapper>

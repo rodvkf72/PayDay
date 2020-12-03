@@ -3,7 +3,7 @@
 
 <mapper namespace="com.deu.payday.dao.CardsimpleMapper">
 
-<select id="cardsimple" resultType="string">
+<select id="simplepw" resultType="string">
 	<![CDATA[
     SELECT DECODE(simple_no, (SELECT card_no FROM card_info WHERE user_id=#{id}), '1', '0') FROM simple WHERE simple_pw=#{spw}
     ]]>

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.deu.payday.dao.CardsimpleMapper;
+import com.deu.payday.dao.LoginMapper;
+import com.deu.payday.dao.PayMapper;
+import com.deu.payday.domain.BuyVO;
 import com.deu.payday.domain.CardsimpleVO;
 import com.deu.payday.domain.PayVO;
 import com.deu.payday.util.PubMap;
@@ -27,9 +30,15 @@ public class CardsimpleController {
 	@Autowired
 	@Setter(onMethod_ = @Autowired)
 	private CardsimpleMapper cardsimpleMapper;
+	@Autowired
+	@Setter(onMethod_ = @Autowired)
+	private LoginMapper loginMapper;
+	@Autowired
+	@Setter(onMethod_ = @Autowired)
+	private PayMapper payMapper;
 	
 	@RequestMapping(value = "/simplepw", method = RequestMethod.POST)
-	public String simplepw(Locale locale, Model model, @RequestParam("user_id") String resid, @RequestParam("simple_pw") String resspw) {
+	public String simplepw(Locale locale, Model model, @RequestParam("user_id") String resid, @RequestParam("simple_pw") String resspw, @RequestParam("result") int resresult) {
 		
 		logger.info("결제완료");
 		
@@ -43,7 +52,17 @@ public class CardsimpleController {
 			return "fail";
 		} else {
 			if (result.equals("1")) {
+				BuyVO bvo = new BuyVO();
+				bvo.setUser_id(resid);
+				bvo.setResult(resresult);
+				payMapper.buy(bvo);
 				
+				model.addAttribute("list", loginMapper.goodslist());
+				
+				PayVO pvo = new PayVO();
+				pvo.setUser_id(resid);
+				PubMap m = payMapper.pay(pvo);
+				model.addAttribute("cardMoney", m.getInt("cardMoney") );
 				return "index";
 			} else {
 				return "fail";
