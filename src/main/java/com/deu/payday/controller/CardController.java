@@ -54,7 +54,16 @@ public class CardController {
 		cvo.setCardmoney(resmoney);
 		
 		cardenrollMapper.enroll(cvo);
-		return "redirect:index";
+		
+		PayVO pvo = new PayVO();
+		pvo.setUser_id(resid);
+		
+		PubMap m = payMapper.pay(pvo);
+		
+		model.addAttribute("cardMoney", m.getInt("cardMoney"));
+		model.addAttribute("list", loginMapper.goodslist());
+		
+		return "index";
 	}
 	
 	@RequestMapping(value = "/card_del", method = RequestMethod.POST)

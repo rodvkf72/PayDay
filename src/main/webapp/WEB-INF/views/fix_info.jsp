@@ -101,7 +101,7 @@
    </tr><!-- 주소지 줄 끝 -->
     
 <tr align = "center" ><!-- 주소지 줄 시작 -->
-       <td bgcolor = "#B2F7F9">주소지</td>
+       <td bgcolor = "#B2F7F9">간편결제 수단</td>
         
        <td width = 300 height = 40 bgcolor = "#F5FEFE">
         <input name="user_relay" type = "text" value = <c:out value="${ item.userRelay }"></c:out>  >
@@ -112,7 +112,7 @@
    </tr><!-- 주소지 줄 끝 -->
    
    <tr align = "center" ><!-- 주소지 줄 시작 -->
-       <td bgcolor = "#B2F7F9">주소지</td>
+       <td bgcolor = "#B2F7F9">물품전달 방식</td>
         
        <td width = 300 height = 40 bgcolor = "#F5FEFE">
         <input name="user_means" type = "text" value = <c:out value="${ item.userMeans }"></c:out>  >
