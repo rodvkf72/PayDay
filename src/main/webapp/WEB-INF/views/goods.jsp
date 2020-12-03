@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="path" value="${ pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +12,7 @@
 <div style="position : absolute; top:10%; left:35%; " >
 	<!--이미지 배치 div-->
 	<div style="width:300px; height:300px; border:1px solid black; display:inline-block; float:left; overflow: hidden;" >
-			<img src="#" style="width: 300; height: 300px;">
+			<img src="${path}/resources/image/pic${goodsNo }.jpg" style="width: 300; height: 300px;">
 		</a>
 	</div>
 <div style="width:50px; height:300px;display: inline; float:left;">

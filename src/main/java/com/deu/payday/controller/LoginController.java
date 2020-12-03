@@ -61,17 +61,20 @@ public class LoginController {
 		lvo.setPw(respw);
 		String result = loginMapper.login(lvo);
 		
+		PayVO pvo = new PayVO();
+		pvo.setUser_id(resid);
+		PubMap m = payMapper.pay(pvo);
+		
 		//NPE
 		if (result == null) {
 			return "fail";
 		} else {
 			if (result.equals("1")) {
-				model.addAttribute("list", loginMapper.goodslist());
-				
-				PayVO pvo = new PayVO();
-				pvo.setUser_id(resid);
-				PubMap m = payMapper.pay(pvo);
 				model.addAttribute("cardMoney", m.getInt("cardMoney") );
+				model.addAttribute("list", loginMapper.goodslist());
+				if (resid.equals("1234")) {
+					model.addAttribute("authority", "authority");
+				}
 				return "index";
 			} else {
 				return "fail";

@@ -47,21 +47,21 @@ public class CardsimpleController {
 		cvo.setSpw(resspw);
 		String result = cardsimpleMapper.simplepw(cvo);
 		
+		BuyVO bvo = new BuyVO();
+		bvo.setUser_id(resid);
+		bvo.setResult(resresult);
+		payMapper.buy(bvo);
+
+		PayVO pvo = new PayVO();
+		pvo.setUser_id(resid);
+		PubMap m = payMapper.pay(pvo);
+		
 		//NPE
 		if (result == null) {
 			return "fail";
 		} else {
 			if (result.equals("1")) {
-				BuyVO bvo = new BuyVO();
-				bvo.setUser_id(resid);
-				bvo.setResult(resresult);
-				payMapper.buy(bvo);
-				
 				model.addAttribute("list", loginMapper.goodslist());
-				
-				PayVO pvo = new PayVO();
-				pvo.setUser_id(resid);
-				PubMap m = payMapper.pay(pvo);
 				model.addAttribute("cardMoney", m.getInt("cardMoney") );
 				return "index";
 			} else {

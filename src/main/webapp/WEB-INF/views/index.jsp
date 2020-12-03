@@ -29,8 +29,7 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="inner">
-							<%! String id;
-								int count = 0; %>
+							<%! String id; %>
 							<% request.setCharacterEncoding("utf-8"); %>
 								<%
 									id = request.getParameter("user_id");
@@ -41,7 +40,7 @@
 								<br>
 								사용자 : 비회원
 								<form action='loginpage' method="post">
-									<input name="user_id" type="text" value=<%=id%> hidden>
+									<input type="hidden" name="user_id" type="text" value=<%=id%>>
 									<input type="submit" value="로그인" class="signUpButton">
 								</form>
 								
@@ -60,6 +59,10 @@
 								<form action='card_enroll' method="post" style="display: inline;">
 									<input type="hidden" name="user_id" type="text" value=<%=id%>>
 									<input type="submit" value="카드등록" class="signUpButton" style="width: 200px">
+								</form> &emsp;
+								<form action='card_del' method="post" style="display: inline;">
+									<input type="hidden" name="user_id" type="text" value=<%=id%>>
+									<input type="submit" value="등록해제" class="signUpButton" style="width: 200px">
 								</form>
 								<br>
 								<br>
@@ -81,11 +84,12 @@
 								<h1>상품 목록<br />
 							</header>
 							<section class="tiles">
+								<%! int count = 0; %>
 								<c:forEach items="${ list }" var="item">
 									<% count++; %>
-									<article class="style1">
+									<article>
 										<span class="image">
-											<img src="${path}/resources/image/pic<%=count%>.jpg" alt="" />
+											<img src="${path}/resources/image/pic<%=count %>.jpg" alt="" />
 										</span>
 										<br>
 										<form action="goods" method="post">
@@ -93,19 +97,9 @@
 											<input name="goods_no" value="${ item.goodsNo }" hidden>
 											<input type="submit" class="navBtn" value="구매하기">
 										</form>
-										<!--
-										<span class="image">
-											<img src="images/pic01.jpg" alt="" />
-										</span>
-										<a href="generic.html">
-											<h2>Magna</h2>
-											<div class="content">
-												<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-											</div>
-										</a>
-										-->
 									</article>
 								</c:forEach>
+								<% count = 0; %>
 							</section>
 						</div>
 					</div>
