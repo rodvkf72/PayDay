@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.deu.payday.dao.CardenrollMapper">
+<mapper namespace="com.deu.payday.service.Card">
 
-    <insert id="enroll">
+    <insert id="enrollservice">
     	INSERT INTO card_info(user_id, card_no, card_duration, card_cvc, card_pw, card_money) VALUES (#{userid}, #{cardno}, #{cardduration}, #{cardcvc}, #{cardpw}, #{cardmoney})					
     </insert>
     
-    <delete id="del">
+    <delete id="delservice">
  		DELETE FROM simple WHERE simple_no = (SELECT card_no FROM card_info WHERE user_id = #{user_id})
 	</delete>
 	
-	<insert id="simple">
+	<insert id="simpleservice">
 		INSERT INTO simple(simple_no, simple_mean, simple_pw) values ((SELECT card_no FROM card_info WHERE user_id = #{user_id}), #{simple_mean}, #{simple_pw})
 	</insert>
+	<select id="simplepwservice" resultType="string">
+		<![CDATA[
+		    SELECT DECODE(simple_no, (SELECT card_no FROM card_info WHERE user_id=#{id}), '1', '0') FROM simple WHERE simple_pw=#{spw}
+	    ]]>
+	</select>
  </mapper>

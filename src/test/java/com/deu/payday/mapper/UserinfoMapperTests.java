@@ -7,9 +7,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.deu.payday.dao.UserinfoMapper;
+import com.deu.payday.dao.LoginMapper;
 import com.deu.payday.domain.UpdateVO;
-import com.deu.payday.domain.UserinfoVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -28,7 +27,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class UserinfoMapperTests {
 	@Setter(onMethod_ = { @Autowired })
-	private UserinfoMapper userinfoMapper;
+	private LoginMapper loginMapper;
 	
 	/*
 	@Test
@@ -48,9 +47,9 @@ public class UserinfoMapperTests {
 		uvo.setMeans("ㅁㅁ");
 		uvo.setRelay("ㄹㄹ");
 		
-		userinfoMapper.update(uvo);
+		loginMapper.update(uvo);
 		
-		userinfoMapper.getList("1234");
+		loginMapper.getList("1234");
 	}
 
 }

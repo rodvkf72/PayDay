@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.deu.payday.dao.CardenrollMapper;
-import com.deu.payday.dao.LoginMapper;
-import com.deu.payday.dao.PayMapper;
+import com.deu.payday.domain.BuyVO;
 import com.deu.payday.domain.CardenrollVO;
+import com.deu.payday.domain.CardsimpleVO;
+import com.deu.payday.domain.LoginVO;
 import com.deu.payday.domain.PayVO;
 import com.deu.payday.domain.SimpleVO;
+import com.deu.payday.service.Card;
+import com.deu.payday.service.Info;
 import com.deu.payday.util.PubMap;
 
 import lombok.Setter;
@@ -26,13 +28,10 @@ public class CardController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	@Autowired
 	@Setter(onMethod_ = @Autowired)
-	private CardenrollMapper cardenrollMapper;
+	private Info info;
 	@Autowired
 	@Setter(onMethod_ = @Autowired)
-	private PayMapper payMapper;
-	@Autowired
-	@Setter(onMethod_ = @Autowired)
-	private LoginMapper loginMapper;
+	private Card card;
 	
 	@RequestMapping(value = "/card_enroll", method = RequestMethod.POST)
 	public String enroll(Locale locale, Model model) {
@@ -54,15 +53,15 @@ public class CardController {
 		cvo.setCardpw(respw);
 		cvo.setCardmoney(resmoney);
 		
-		cardenrollMapper.enroll(cvo);
+		card.enrollservice(cvo);
 		
 		PayVO pvo = new PayVO();
 		pvo.setUser_id(resid);
 		
-		PubMap m = payMapper.pay(pvo);
+		PubMap m = info.payservice(pvo);
 		
 		model.addAttribute("cardMoney", m.getInt("cardMoney"));
-		model.addAttribute("list", loginMapper.goodslist());
+		model.addAttribute("list", info.goodslistservice());
 		
 		return "index";
 	}
@@ -73,12 +72,12 @@ public class CardController {
 		PayVO pvo = new PayVO();
 		pvo.setUser_id(resid);
 		
-		cardenrollMapper.del(pvo);
+		card.delservice(pvo);
 		
-		PubMap m = payMapper.pay(pvo);
+		PubMap m = info.payservice(pvo);
 		
 		model.addAttribute("cardMoney", m.getInt("cardMoney") );
-		model.addAttribute("list", loginMapper.goodslist());
+		model.addAttribute("list", info.goodslistservice());
 
 		return "index";
 	}
@@ -91,23 +90,68 @@ public class CardController {
 	}
 	
 	@RequestMapping(value = "/card_simple", method = RequestMethod.POST)
-	public String card_simple(Locale locale, Model model, @RequestParam("user_id") String resid, @RequestParam("simple_mean") String resmean, @RequestParam("simple_pw") int respw) {
+	public String card_simple(Locale locale, Model model, @RequestParam("simple_mean") String resmean, @RequestParam("user_id") String resid, @RequestParam("user_pw") String resupw, @RequestParam("simple_pw") int respw) {
 		logger.info("Welcome card simple enroll");
-		
-		SimpleVO svo = new SimpleVO();
-		svo.setUser_id(resid);
-		svo.setSimple_mean(resmean);
-		svo.setSimple_pw(respw);
-		
-		cardenrollMapper.simple(svo);
+		LoginVO lvo = new LoginVO();
+		lvo.setId(resid);
+		lvo.setPw(resupw);
+		info.loginservice(lvo);
+		String result = info.loginservice(lvo);
 		
 		PayVO pvo = new PayVO();
 		pvo.setUser_id(resid);
-		PubMap m = payMapper.pay(pvo);
+		PubMap m = info.payservice(pvo);
 		
-		model.addAttribute("cardMoney", m.getInt("cardMoney"));
-		model.addAttribute("list", loginMapper.goodslist());
+		if (result == null) {
+			return "fail";
+		} else {
+			if (result.equals("1")) {
+				SimpleVO svo = new SimpleVO();
+				svo.setUser_id(resid);
+				svo.setSimple_mean(resmean);
+				svo.setSimple_pw(respw);
+				
+				card.simpleservice(svo);
+				
+				model.addAttribute("cardMoney", m.getInt("cardMoney"));
+				model.addAttribute("list", info.goodslistservice());
+				return "index";
+			} else {
+				return "fail";
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/simplepw", method = RequestMethod.POST)
+	public String simplepw(Locale locale, Model model, @RequestParam("user_id") String resid, @RequestParam("simple_pw") String resspw, @RequestParam("result") int resresult) {
 		
-		return "index";
+		logger.info("Welcome payment page");
+		
+		CardsimpleVO cvo = new CardsimpleVO();
+		cvo.setId(resid);
+		cvo.setSpw(resspw);
+		String result = card.simplepwservice(cvo);
+		
+		BuyVO bvo = new BuyVO();
+		bvo.setUser_id(resid);
+		bvo.setResult(resresult);
+		info.buyservice(bvo);
+
+		PayVO pvo = new PayVO();
+		pvo.setUser_id(resid);
+		PubMap m = info.payservice(pvo);
+		
+		//NPE
+		if (result == null) {
+			return "fail";
+		} else {
+			if (result.equals("1")) {
+				model.addAttribute("list", info.goodslistservice());
+				model.addAttribute("cardMoney", m.getInt("cardMoney") );
+				return "index";
+			} else {
+				return "fail";
+			}
+		}
 	}
 }

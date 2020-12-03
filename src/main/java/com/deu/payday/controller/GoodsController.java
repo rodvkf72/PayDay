@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.deu.payday.dao.GoodsMapper;
 import com.deu.payday.domain.GoodsVO;
+import com.deu.payday.service.Info;
 import com.deu.payday.util.PubMap;
 
 import lombok.Setter;
@@ -21,7 +22,7 @@ public class GoodsController {
 	
 	@Autowired
 	@Setter(onMethod_ = @Autowired)
-	private GoodsMapper goodsMapper;
+	private Info info;
 	
 	@RequestMapping(value = "/goods", method = RequestMethod.POST)
 	public String goods(@RequestParam("user_id") String resid, @RequestParam("goods_no") int resno, Model model) {
@@ -29,7 +30,7 @@ public class GoodsController {
 		GoodsVO gd = new GoodsVO();
 		gd.setGno(resno);
 	
-		PubMap m = goodsMapper.goods(gd);
+		PubMap m = info.goodsservice(gd);
 		
 		model.addAttribute("userId", resid);
 		model.addAttribute("goodsNo", m.getInt("goodsNo"));

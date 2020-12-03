@@ -23,10 +23,12 @@
 		<form class="signUp" id="signupForm" action="card_simple" method="post">
 		   <h1 class="signUpTitle">PayDay</h1>
 		   <input name="user_id" type="hidden" class="signUpInput" value="<%=id%>">
-		   <b>결제방식</b><input name="simple_mean" type="text" class="signUpInput" placeholder="결제 방식을 입력해 주세요." autofocus required>
+		   <input name="simple_mean" type="hidden" class="signUpInput" value="simple">
+		   <b>계정 비밀번호 확인</b>
+		   <input name="user_pw" type="password" class="signUpInput" placeholder="로그인 중인 아이디의 비밀번호를 입력해주세요." autofocus required>
 		   <br>
 		   <br>
-		   <b>비밀번호</b><input name="simple_pw" type="password" class="signUpInput" required>
+		   <b>간편결제로 등록할 비밀번호</b><input name="simple_pw" type="password" class="signUpInput" required>
 		   <br>
 		   <br>
 		   <input type="submit" value="등록" class="signUpButton">

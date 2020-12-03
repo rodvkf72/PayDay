@@ -8,7 +8,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.deu.payday.dao.LoginMapper;
-import com.deu.payday.dao.UserinfoMapper;
 import com.deu.payday.domain.LoginVO;
 import com.deu.payday.domain.UpdateVO;
 
@@ -27,7 +26,6 @@ import lombok.extern.log4j.Log4j;
 public class LoginControllerTests {
 	@Setter(onMethod_ = { @Autowired })
 	private LoginMapper loginMapper;
-	private UserinfoMapper userinfoMapper;
 	
 	/*
 	@Test
@@ -52,8 +50,8 @@ public class LoginControllerTests {
 		uvo.setMeans("ㅅㅅ");
 		uvo.setRelay("ㅇㅇ");
 		
-		userinfoMapper.update(uvo);
+		loginMapper.update(uvo);
 		
-		log.info("test : " + userinfoMapper.update(uvo));
+		log.info("test : " + loginMapper.update(uvo));
 	}
 }

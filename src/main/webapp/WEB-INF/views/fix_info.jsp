@@ -104,7 +104,12 @@
        <td bgcolor = "#B2F7F9">간편결제 수단</td>
         
        <td width = 300 height = 40 bgcolor = "#F5FEFE">
-        <input name="user_relay" type = "text" value = <c:out value="${ item.userRelay }"></c:out>  >
+       <select id="simple" name="simple" onchange='simplebox()'>
+	       		<option value='' selected>-- 선택 --</option>
+	       		<option value="simple">간편결제</option>
+	      		<option value="normal">일반결제</option>				
+	    </select>
+        <input id="user_relay" name="user_relay" type = "text" value = <c:out value="${ item.userRelay }"></c:out> hidden>
         </td>
         
           
@@ -132,5 +137,14 @@
    </form>
    </div>
    </c:forEach>
+   <script>
+   function simplebox() {
+		var obj = document.getElementById('simple');
+		var index = obj.selectedIndex;
+		var value = obj.options[index].value;
+
+		document.getElementById('user_relay').value = value;
+		}
+   </script>
 	</body>
 </html>

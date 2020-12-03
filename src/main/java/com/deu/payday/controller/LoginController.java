@@ -11,28 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.deu.payday.dao.LoginMapper;
-import com.deu.payday.dao.PayMapper;
-import com.deu.payday.dao.UserinfoMapper;
 import com.deu.payday.domain.LoginVO;
 import com.deu.payday.domain.PayVO;
 import com.deu.payday.domain.UpdateVO;
+import com.deu.payday.service.Info;
 import com.deu.payday.util.PubMap;
 
+import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller
+@AllArgsConstructor
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-
+	
 	@Autowired
 	@Setter(onMethod_ = @Autowired)
-	private LoginMapper loginMapper;
-	@Autowired
-	@Setter(onMethod_ = @Autowired)
-	private PayMapper payMapper;
+	private Info info;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -41,7 +38,7 @@ public class LoginController {
 		logger.info("Welcome Index!", locale);
 		//PubMap p = loginMapper.goodslist();
 		
-		model.addAttribute("list", loginMapper.goodslist());
+		model.addAttribute("list", info.goodslistservice());
 		/*
 		model.addAttribute("goodsNo", p.getInt("goodsNo"));
 		model.addAttribute("goodsName", p.getString("goodsName"));
@@ -59,11 +56,11 @@ public class LoginController {
 		LoginVO lvo = new LoginVO();
 		lvo.setId(resid);
 		lvo.setPw(respw);
-		String result = loginMapper.login(lvo);
+		String result = info.loginservice(lvo);
 		
 		PayVO pvo = new PayVO();
 		pvo.setUser_id(resid);
-		PubMap m = payMapper.pay(pvo);
+		PubMap m = info.payservice(pvo);
 		
 		//NPE
 		if (result == null) {
@@ -71,10 +68,7 @@ public class LoginController {
 		} else {
 			if (result.equals("1")) {
 				model.addAttribute("cardMoney", m.getInt("cardMoney") );
-				model.addAttribute("list", loginMapper.goodslist());
-				if (resid.equals("1234")) {
-					model.addAttribute("authority", "authority");
-				}
+				model.addAttribute("list", info.goodslistservice());
 				return "index";
 			} else {
 				return "fail";
@@ -89,14 +83,11 @@ public class LoginController {
 		return "loginpage";
 	}
 	
-	@Autowired
-	@Setter(onMethod_ = @Autowired)
-	private UserinfoMapper userinfoMapper;
 	@RequestMapping(value ="/fix_info", method = RequestMethod.POST)
 	public String fix_info(Locale locale, Model model, @RequestParam("user_id") String resid) {
 		logger.info("Welcome Fix_Info");
 
-		model.addAttribute("list", userinfoMapper.getList(resid));
+		model.addAttribute("list", info.getListservice(resid));
 		
 		if (resid == null) {
 			return "fail";
@@ -117,7 +108,7 @@ public class LoginController {
 		uvo.setMeans(resmeans);
 		uvo.setRelay(resrelay);
 		
-		userinfoMapper.update(uvo);
+		info.updateservice(uvo);
 		return "redirect:index";
 	}
 }

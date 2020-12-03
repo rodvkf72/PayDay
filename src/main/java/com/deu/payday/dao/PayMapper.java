@@ -8,4 +8,6 @@ public interface PayMapper {
 	PubMap pay(PayVO pvo);
 	
 	void buy(BuyVO bvo);
+	
+	
 }
