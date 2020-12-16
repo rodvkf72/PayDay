@@ -51,7 +51,7 @@
     - 결제 시 간편결제, 일반결제를 선택할 수 있으며 간편결제 사용 시 간편결제 비밀번호를 입력받고 금액을 차감
     <br>
     
-  ![image](https://user-images.githubusercontent.com/48707324/102353616-a8b1fa00-3fec-11eb-8b37-cb1e964ef671.png)
+  ![image](https://user-images.githubusercontent.com/48707324/102353616-a8b1fa00-3fec-11eb-8b37-cb1e964ef671.png)  
   ▲ 실행 화면
 <br>
 <br>
