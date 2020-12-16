@@ -39,6 +39,7 @@
   ![image](https://user-images.githubusercontent.com/48707324/102353329-3d682800-3fec-11eb-91bd-49d2c94641b7.png)
   ▲ 시퀀스 다이어그램
   <br>
+  <br>
   
   - 프로젝트 구현  
     - java 변수를 활용하여 추가적인 페이지 제작 없이 회원, 비회원을 구분하며 비회원은 로그인 버튼만 보이도록 구분
