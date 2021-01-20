@@ -28,10 +28,13 @@
 	-->
 	<bean id="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-  		<property name="url" value="jdbc:log4jdbc:oracle:thin:@dev.tonabit.com:1521:ORCL"/> 
+  		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"/> 
+  		<!-- dev.tonabit.com:1521:ORCL -->
 <!--    		<property name="url" value="jdbc:log4jdbc:oracle:thin:@fintech.com:1521:XE"/> --> 
-		<property name="username" value="payday"/>
-		<property name="password" value="Choyoung1"/>
+		<property name="username" value="root"/>
+		<!-- payday -->
+		<property name="password" value="1463"/>
+		<!-- Choyoung1 -->
 	</bean>
 
 
